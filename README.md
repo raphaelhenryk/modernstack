@@ -12,8 +12,30 @@ Infraestrutura:
         OBS: ao inves de dar clone, dar um fork no codigo do airbyte, cria-se entao uma branch no codigo forkeado.
         Executa-se entao o clone do airbyte da branch criada no seu proprio repositorio, e nao no repo oficial.
         git clone -b modernstack https://github.com/raphaelhenryk/airbyte.git
+        cd airbyte
+        docker-compose up
+
 
     - Subir Airflow via Docker
+        https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
+        Cria-se um diretorio airflow
+        cd airflow
+        executase a partir do diretorio airflow, o seguinte comando: 
+        curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.5.0/docker-compose.yaml'
+        executar os comandos:
+        mkdir -p ./dags ./logs ./plugins
+        echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+        Subir o Airflow: comando :
+        docker compose up airflow-init
+
+        docker-compose up
+        criar um arquivo .gitignore na pasta do Airflow para que nao suba a pasta logs/*
+        commit
+
+
+
+
     - Subir Metabase via Docker
     - Criar Script de Execução
     - Testar a Execução
