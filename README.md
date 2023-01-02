@@ -26,18 +26,36 @@ Infraestrutura:
         mkdir -p ./dags ./logs ./plugins
         echo -e "AIRFLOW_UID=$(id -u)" > .env
 
-        Subir o Airflow: comando :
+        - Subir os serviços do Airflow: comando :
         docker compose up airflow-init
 
+        - Subir o Airflow: comando :
         docker-compose up
         criar um arquivo .gitignore na pasta do Airflow para que nao suba a pasta logs/*
         commit
 
-
-
-
     - Subir Metabase via Docker
+        criar a pasta metabase
+        criar um arquivo docker-compose.yaml
+        
+            version: "3"
+                services:
+                metabase-app:
+                    image: metabase/metabase
+                    restart: always
+                    ports:
+                    - 3000:3000
+                    volumes:
+                    # declare your mount volume /host/dir:/container/dir
+                    - /home/app/metabase-data:/metabase-data
+        
+        cd metabase
+        docker-compose up
+
+
     - Criar Script de Execução
+        Shell script com todos os comandos do terminal, para subir os serviços
+        
     - Testar a Execução
 
 Extraçao
